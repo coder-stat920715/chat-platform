@@ -1,0 +1,22 @@
+server:
+  port: ${SERVER_PORT:8080}
+  netty:
+    connection-timeout: 5s
+spring:
+  application:
+    name: websocket-gateway
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+chat:
+  worker-id: ${CHAT_WORKER_ID:1}          # 0..1023, unique per gateway instance (use StatefulSet ordinal)
+  gateway-id: ${CHAT_GATEWAY_ID:gw-1}     # unique per instance
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+  rate-limit-per-second: 40
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus

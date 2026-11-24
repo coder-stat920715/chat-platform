@@ -1,0 +1,22 @@
+server:
+  port: ${SERVER_PORT:8081}
+spring:
+  application:
+    name: message-router
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  cassandra:
+    contact-points: ${CASSANDRA_HOST:localhost}:9042
+    local-datacenter: datacenter1
+    keyspace-name: chat
+    schema-action: none
+chat:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
